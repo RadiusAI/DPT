@@ -1,5 +1,13 @@
+#!/usr/bin/env bash
+source conf.sh
 
-read -p "Enter Tag: " TAG_NAME
+if [[ -z $IMAGE_TAG ]]
+then
+  echo "No image tag provided. Not building image."
+else
+  docker build -t intel/dpt:$IMAGE_TAG .
+fi
+
 docker run --gpus 0 \
            --rm \
 	   -itd \
@@ -8,4 +16,4 @@ docker run --gpus 0 \
            --env-file conf.sh \
            --shm-size 8G \
            -v $(pwd):/tf \
-           intel/dpt:${TAG_NAME}
+           intel/dpt:${IMAGE_TAG}

@@ -8,4 +8,4 @@ docker run --gpus 0 \
            --env-file conf.sh \
            --shm-size 8G \
            -v $(pwd):/tf \
-           rohtas/dpt:${TAG_NAME}
+           intel/dpt:${TAG_NAME}
